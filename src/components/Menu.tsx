@@ -29,13 +29,13 @@ const Menu  = ():ReactElement => {
         
         switch(selected.page){
             case CONSTANTS.CHARACTER_STRING:
-                navigate("../characterPractice" , {state:{type:selected.type}});
+                navigate("../japwjay/characterPractice" , {state:{type:selected.type}});
                 break;
             case CONSTANTS.WORD_STRING:
-                navigate("../wordPracticeSelection");
+                navigate("../japwjay/wordPractice");
                 break;
             case CONSTANTS.LEADERBOARD_STRING:
-                navigate("../leaderboard");
+                navigate("../japwjay/leaderboard");
                 break;
             default:
                 console.log("🚀 ~ file: Menu.tsx:18 ~ redirect ~ page", selected);

@@ -5,7 +5,7 @@ const Login = ():ReactElement  => {
 
     const navigate = useNavigate();
     const onClick = () => {
-        navigate('/menu');
+        navigate('../japwjay/menu');
     }
     return (
         <form >

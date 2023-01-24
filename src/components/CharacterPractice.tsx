@@ -2,14 +2,6 @@ import React, { useState, useEffect,ReactElement  } from 'react';
 import { useNavigate,useLocation } from 'react-router-dom'
 import hiragana from '../character.json';
 import * as CONSTANTS from '../Constants';
-// const hiragana = [
-//   { hiragana: 'あ', romanization: 'a' , katakana: 'ア' },
-//   { hiragana: 'い', romanization: 'i' , katakana: 'イ'},
-//   { hiragana: 'う', romanization: 'u' , katakana: 'ウ'},
-//   { hiragana: 'え', romanization: 'e' , katakana: 'エ'},
-//   { hiragana: 'お', romanization: 'o' , katakana: 'オ'},
-//   // ...
-// ];
 
 
 const CharacterPractice = ():ReactElement  => {
@@ -60,7 +52,7 @@ const CharacterPractice = ():ReactElement  => {
   };
 
   const returnToMenu = () => {
-      navigate('/menu');
+      navigate('../japwjay/menu');
   }
 
   return (

@@ -16,7 +16,7 @@ const Leaderboard = ():ReactElement  => {
 
     const navigate = useNavigate();
     const returnToMenu = () => {
-        navigate('/menu');
+        navigate('../japwjay/menu');
     }
     return (
         < >
