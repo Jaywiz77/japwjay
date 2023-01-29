@@ -48,3 +48,18 @@
 td{
   text-align: center;
 }
+
+.playBtn {
+  background-color: #00897b;
+  border: #00796b;
+  border-radius: 5px;
+}
+
+.playBtn:hover {
+  background-color: #00796b;
+}
+
+.playBtn:focus{
+  background-color:  #00796b;
+
+}
