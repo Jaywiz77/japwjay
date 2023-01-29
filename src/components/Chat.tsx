@@ -36,6 +36,8 @@ const Chat  = ():ReactElement => {
     const postAPI = async ( ): Promise<any> =>{
         console.log("----- " + api_key);
         console.log("===" + import.meta.env.VITE_API_KEY);
+        console.log("-==-- " + process.env.API_KEY);
+        console.log("=---=" + import.meta.env.API_KEY);
         setUserText("");
         return await axios({
             ...postConfig,
