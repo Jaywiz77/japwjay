@@ -7,11 +7,14 @@ on:
   push:
     branches:
       - main
-
+  env:
+    API_KEY: ${{ vars.VITE_API_KEY }}
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    env:
+      VITE_API_KEY: ${{ vars.VITE_API_KEY }}
 
     steps:
       - name: Checkout repo
@@ -27,9 +30,6 @@ jobs:
 
       - name: Build project
         run: npm run build
-        env:
-          VITE_API_KEY: ${{ vars.VITE_API_KEY }}
-          API_KEY: ${{ vars.VITE_API_KEY }}
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v2
