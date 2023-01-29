@@ -6,17 +6,20 @@ import axios from 'axios'
 //interface for the Helper
 interface Params {
         url: string
+        headers:any,
     method: string
 
 }
 
 
 
-// const api_key= import.meta.env.VITE_API_KEY
+const api_key= process.env.VITE_API_KEY;
 
 const postConfig: Params = {
     url: "https://api.openai.com/v1/completions",
-    
+    headers: {
+        "Authorization": `Bearer ${import.meta.env.VITE_API_KEY}`,
+    },
     method: 'post'
 }
 
@@ -31,12 +34,12 @@ const Chat  = ():ReactElement => {
     }
 
     const postAPI = async ( ): Promise<any> =>{
+        console.log("----- " + api_key);
+        console.log("===" + import.meta.env.VITE_API_KEY);
         setUserText("");
         return await axios({
             ...postConfig,
-            headers: {
-                "Authorization": `Bearer ${import.meta.env.VITE_API_KEY}`,
-            },
+            
             data:{
                 "model":"text-davinci-003",
                 "prompt":`${userText} | Output in English and Japanese`,
