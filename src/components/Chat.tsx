@@ -45,7 +45,7 @@ const Chat  = ():ReactElement => {
                 
             }
         }).then ( (response) => {
-            // console.log(response)
+            console.log(response);
             setChatReply(response.data.choices[0].text);
             
 
