@@ -7,8 +7,10 @@ on:
   push:
     branches:
       - main
-  env:
-    API_KEY: ${{ vars.VITE_API_KEY }}
+      
+env:
+  API_KEY: ${{ vars.VITE_API_KEY }}
+
 jobs:
   build:
     name: Build
