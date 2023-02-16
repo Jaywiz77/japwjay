@@ -37,13 +37,10 @@ const Chat  = ():ReactElement => {
 
     }
 
-    const postAPI = async ( ): Promise<void> =>{
+    const postAPI = async ( ): Promise<any> =>{
         setUserText("");
-        console.log("---"+"test");
         const bytes = CryptoJS.AES.decrypt("U2FsdGVkX1+qoG8uBYdmEYz+bTXeClFo9PR83aoCWtnbaTo3m+Ai3oanwUtMfupWTttjQ4R+41O6zGsxII2HIhbXfECWzAeUerbJsE8C3Kc=", 'japwjay');
-        // const ak:string = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-        const ak:string = bytes.toString(CryptoJS.enc.Utf8);
-        console.log("---"+ak)
+        const ak:string = bytes.toString(CryptoJS.enc.Utf8).replaceAll('"',"");
         
         
         return await axios<ServerData>({
@@ -71,7 +68,8 @@ const Chat  = ():ReactElement => {
 
     return (
 
-        <form onSubmit={postAPI}>
+        // <form onSubmit={postAPI}>
+        <>
         <article style={{maxWidth:"1200px"}}>
             <h4>{chatReplyJapanese}</h4>
             <h4>{chatReplyEnglish}</h4>
@@ -82,8 +80,9 @@ const Chat  = ():ReactElement => {
         <input type="submit"  onClick={postAPI} value="Enter" />
         <input type="submit"  className="secondary" value="Return" onClick={returnToMenu} />
         </div>
+        {/* </form> */}
+        </>
         
-        </form>
     )
 }
 export default Chat;

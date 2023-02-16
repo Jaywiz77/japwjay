@@ -65,7 +65,7 @@ const WordPractice = ():ReactElement  => {
                 <button className={"playBtn"}  type="submit" onClick={speak}><img src={voiceIcon} alt="Logo" style={{maxWidth:"70%"}}/></button>
                 <input type="submit"  value="Next" onClick={nextWord} disabled={selectedCount >= (state.wordSelection + CONSTANTS.WORD_SEGMENT_NUMBER - 1)} />
             </div>
-            <input type="submit" style={{width:"300px"}}  value="Test" onClick={returnToMenu} />
+            {/* <input type="submit" style={{width:"300px"}}  value="Test" onClick={returnToMenu} /> */}
             <input type="submit" className="secondary" style={{width:"300px"}}  value="Return" onClick={returnToMenu} />
         </div>
         </>
