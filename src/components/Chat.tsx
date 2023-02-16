@@ -10,7 +10,17 @@ interface Params {
 
 }
 
+interface ServerResponse {
+    data: ServerData
+  }
+  
+  interface ServerData {
+    choices: TextData[]
+  }
 
+  interface TextData {
+    text:string
+  }
 
 const postConfig: Params = {
     url: "https://api.openai.com/v1/completions",
@@ -31,11 +41,14 @@ const Chat  = ():ReactElement => {
 
     const postAPI = async ( ): Promise<any> =>{
         setUserText("");
-
-        let bytes = CryptoJS.AES.decrypt(import.meta.env.VITE_API_KEY, 'japwjay');
-        const ak:string = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+        console.log("---"+"test");
+        const bytes = CryptoJS.AES.decrypt("U2FsdGVkX1+qoG8uBYdmEYz+bTXeClFo9PR83aoCWtnbaTo3m+Ai3oanwUtMfupWTttjQ4R+41O6zGsxII2HIhbXfECWzAeUerbJsE8C3Kc=", 'japwjay');
+        // const ak:string = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+        const ak:string = bytes.toString(CryptoJS.enc.Utf8);
+        console.log("---"+ak)
         
-        return await axios({
+        
+        return await axios<ServerData>({
             ...postConfig,
             headers: {
                 "Authorization": `Bearer ${ak}`,
@@ -46,9 +59,8 @@ const Chat  = ():ReactElement => {
                 "prompt":`${userText} | Output in English and Japanese`,
                 "temperature": 0.7,
                 "max_tokens": 160
-                
             }
-        }).then ( (response) => {
+        }).then ( (response ) => {
             setChatReplyEnglish(response.data.choices[0].text.split("Japanese:")[0].replace("English:",""));
             setChatReplyJapanese(response.data.choices[0].text.split("Japanese:")[1]);
         }).catch( ()=>{

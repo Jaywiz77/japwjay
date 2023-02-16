@@ -9,8 +9,12 @@ const CharacterPractice = ():ReactElement  => {
   const [userInput, setUserInput] = useState('');
   const [isCorrect, setIsCorrect] = useState(true);
   const [score, setScore] = useState(0);
-  const {state} = useLocation();
+  const location  = useLocation();
   const navigate =  useNavigate();
+
+  const state = location.state as { type: string };
+  
+
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(event.target.value);
