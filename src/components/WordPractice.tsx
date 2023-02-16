@@ -13,8 +13,10 @@ interface word {
 
 
 const WordPractice = ():ReactElement  => {
-    const {state} = useLocation();
+    const location  = useLocation();
 
+    const state = location.state as { wordSelection: number };
+    
     const [selectedWord,setSelectedWord] = useState<word>(words[state.wordSelection]);
     const [selectedCount, setSelectedCount] = useState<number>(state.wordSelection);
     const navigate = useNavigate();

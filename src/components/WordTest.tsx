@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 const WordTest = ():ReactElement  => {
-    const [selectedWord,setSelectedWord] = useState<String>("");
+    const [selectedWord,setSelectedWord] = useState<string>("");
     const navigate = useNavigate();
     const onClick = () => {
         navigate('../japwjay/menu');

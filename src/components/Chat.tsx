@@ -10,9 +10,7 @@ interface Params {
 
 }
 
-interface ServerResponse {
-    data: ServerData
-  }
+
   
   interface ServerData {
     choices: TextData[]
@@ -39,7 +37,7 @@ const Chat  = ():ReactElement => {
 
     }
 
-    const postAPI = async ( ): Promise<any> =>{
+    const postAPI = async ( ): Promise<void> =>{
         setUserText("");
         console.log("---"+"test");
         const bytes = CryptoJS.AES.decrypt("U2FsdGVkX1+qoG8uBYdmEYz+bTXeClFo9PR83aoCWtnbaTo3m+Ai3oanwUtMfupWTttjQ4R+41O6zGsxII2HIhbXfECWzAeUerbJsE8C3Kc=", 'japwjay');
