@@ -8,15 +8,10 @@ on:
     branches:
       - main
 
-env:
-  API_KEY: "test"
-
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    env:
-      VITE_API_KEY: ${{ vars.VITE_API_KEY }}
 
     steps:
       - name: Checkout repo
@@ -32,6 +27,9 @@ jobs:
 
       - name: Build project
         run: npm run build
+
+      - name: Run ESLint
+        run: npm run lint:scripts
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v2

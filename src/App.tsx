@@ -1,29 +1,26 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import logo from "./assets/JWJLogo.png";
+// import { useState } from 'react';
 import './App.css';
 import CharacterPractice from "./components/CharacterPractice";
-import Login from './components/Login';
 import '@picocss/pico/css/pico.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Menu from './components/Menu';
-import Leaderboard from './components/Leaderboard';
 import WordPracticeSelection from './components/WordPracticeSelection';
 import WordPractice from './components/WordPractice';
 import Chat from './components/Chat';
+import WordTest from './components/WordTest';
+import * as CONSTANTS from './Constants';
+
 function App() {
-  const [count, setCount] = useState(0);
-  const url = "japwjay/" ;
   return (
     <BrowserRouter>
       <Routes>
-        <Route index path="*" element={<Login />} />
-        <Route path="japwjay/characterPractice" element={<CharacterPractice />} />
-        <Route path="japwjay/menu" element={<Menu />} />
-        <Route path="japwjay/leaderboard" element={<Leaderboard/>}/>
-        <Route path="japwjay/wordPracticeSelection" element={<WordPracticeSelection/>}/>
-        <Route path="japwjay/wordPractice" element={<WordPractice/>}/>
-        <Route path="japwjay/chat" element={<Chat/>}/>
+        {/* <Route index path="*" element={<Login />} /> */}
+        <Route path={CONSTANTS.NAV_CHARACTER_PRACTICE} element={<CharacterPractice />} />
+        <Route index path="*" element={<Menu />} />
+        <Route path={CONSTANTS.NAV_WORD_TEST} element={<WordTest/>}/>
+        <Route path={CONSTANTS.NAV_WORD_PRACTICE_SELECTION} element={<WordPracticeSelection/>}/>
+        <Route path={CONSTANTS.NAV_WORD_PRACTICE} element={<WordPractice/>}/>
+        <Route path={CONSTANTS.NAV_CHAT} element={<Chat/>}/>
       </Routes>
     </BrowserRouter>
   )

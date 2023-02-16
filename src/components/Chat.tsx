@@ -1,32 +1,28 @@
 
-import {ChangeEvent, useState, useEffect ,ReactElement } from 'react';
+import {useState ,ReactElement } from 'react';
 import { useNavigate } from 'react-router-dom'
-import * as CONSTANTS from '../Constants';
-import axios from 'axios'
+import axios from 'axios';
+import CryptoJS from "crypto-js";
 //interface for the Helper
 interface Params {
         url: string
-        headers:any,
     method: string
 
 }
 
 
 
-const api_key= process.env.VITE_API_KEY;
-
 const postConfig: Params = {
     url: "https://api.openai.com/v1/completions",
-    headers: {
-        "Authorization": `Bearer ${import.meta.env.VITE_API_KEY}`,
-    },
+
     method: 'post'
 }
 
 
 const Chat  = ():ReactElement => {
     const [userText,setUserText] = useState<string>("");
-    const [chatReply, setChatReply] = useState<string>("こんにちは Jay bot です!");
+    const [chatReplyEnglish, setChatReplyEnglish] = useState<string>("Hello I am Jay bot!");
+    const [chatReplyJapanese, setChatReplyJapanese] = useState<string>("こんにちは Jay bot です!");
     const navigate = useNavigate();
     const returnToMenu = () => {
         navigate('../japwjay/menu');
@@ -34,13 +30,16 @@ const Chat  = ():ReactElement => {
     }
 
     const postAPI = async ( ): Promise<any> =>{
-        console.log("----- " + api_key);
-        console.log("===" + import.meta.env.VITE_API_KEY);
-        console.log("-==-- " + process.env.API_KEY);
-        console.log("=---=" + import.meta.env.API_KEY);
         setUserText("");
+
+        let bytes = CryptoJS.AES.decrypt(import.meta.env.VITE_API_KEY, 'japwjay');
+        const ak:string = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+        
         return await axios({
             ...postConfig,
+            headers: {
+                "Authorization": `Bearer ${ak}`,
+            },
             
             data:{
                 "model":"text-davinci-003",
@@ -50,30 +49,31 @@ const Chat  = ():ReactElement => {
                 
             }
         }).then ( (response) => {
-            console.log(response);
-            setChatReply(response.data.choices[0].text);
-            
-
-        }).catch((error) =>{
+            setChatReplyEnglish(response.data.choices[0].text.split("Japanese:")[0].replace("English:",""));
+            setChatReplyJapanese(response.data.choices[0].text.split("Japanese:")[1]);
+        }).catch( ()=>{
             // console.log(error);
-            setChatReply("エラー > <\"");
+            setChatReplyJapanese("エラー > <\"");
+            setChatReplyEnglish("Error ")
 
         })
     }
 
     return (
-        <>
+
+        <form onSubmit={postAPI}>
         <article style={{maxWidth:"1200px"}}>
-            <h4>{chatReply}</h4>
+            <h4>{chatReplyJapanese}</h4>
+            <h4>{chatReplyEnglish}</h4>
             <label> JayBot </label>
         </article>
         <div className='container' style={{maxWidth:"300px"}}>
         <input type="text" placeholder="Enter your thoughts" onChange={(e: React.ChangeEvent<HTMLInputElement>)=>{setUserText(e.target.value)}} value={userText}/>
-        <input type="submit" className="primary" onClick={postAPI} value="Enter" />
-        <input type="submit"  value="Return" onClick={returnToMenu} />
+        <input type="submit"  onClick={postAPI} value="Enter" />
+        <input type="submit"  className="secondary" value="Return" onClick={returnToMenu} />
         </div>
         
-        </>
+        </form>
     )
 }
 export default Chat;

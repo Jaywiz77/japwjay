@@ -41,8 +41,13 @@ const WordPractice = ():ReactElement  => {
         navigate('../japwjay/menu');
     }
 
+    const navigateToTest = () =>{
+        navigate('../japwjay/wordtest');
+    }
+
     const speak = () => {
-        msg.lang = "ja-JA";
+        msg.lang = "ja-JP";
+        msg.voice = speechSynthesis.getVoices().filter(function (voice) { return voice.name === "Google japanese"; })[0];
         msg.text = selectedWord.romaji
         window.speechSynthesis.speak(msg);
       }
@@ -53,12 +58,13 @@ const WordPractice = ():ReactElement  => {
             <h1 style={{fontSize:"7em"}}>{selectedWord.word}</h1>
             <h2> {selectedWord.romaji}</h2>
             <h1 style={{fontSize:"4em"}}>{selectedWord.meaning}</h1>
-            <div className='grid' style={{width:"300px"}} >
-                <input type="submit" value="Previous" onClick={prevWord} disabled={selectedCount == state.wordSelection}/>
-                <button className={"playBtn"} type="submit" onClick={speak}><img src={voiceIcon} alt="Logo" style={{maxWidth:"70%"}}/></button>
-                <input type="submit" value="Next" onClick={nextWord} disabled={selectedCount >= (state.wordSelection + CONSTANTS.WORD_SEGMENT_NUMBER)} />
+            <div className='grid' style={{width:"300px",display:"flex",flexDirection:"row"}} >
+                <input type="submit" value="Prev" onClick={prevWord} disabled={selectedCount == state.wordSelection}/>
+                <button className={"playBtn"}  type="submit" onClick={speak}><img src={voiceIcon} alt="Logo" style={{maxWidth:"70%"}}/></button>
+                <input type="submit"  value="Next" onClick={nextWord} disabled={selectedCount >= (state.wordSelection + CONSTANTS.WORD_SEGMENT_NUMBER - 1)} />
             </div>
-            <input type="submit" style={{width:"300px"}}  value="Return" onClick={returnToMenu} />
+            <input type="submit" style={{width:"300px"}}  value="Test" onClick={returnToMenu} />
+            <input type="submit" className="secondary" style={{width:"300px"}}  value="Return" onClick={returnToMenu} />
         </div>
         </>
     )
