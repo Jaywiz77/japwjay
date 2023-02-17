@@ -12,7 +12,7 @@ const WordPracticeSelection = ():ReactElement  => {
 
     const navigate = useNavigate();
     const returnToMenu = () => {
-        navigate('/menu');
+        navigate('../japwjay/menu');
     }
 
 
