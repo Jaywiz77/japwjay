@@ -24,7 +24,6 @@ const WordPractice = ():ReactElement  => {
     
     useEffect(() => {
         setSelectedWord(words[selectedCount]);
-        
     },[selectedCount])
 
     useEffect(()=>{
