@@ -5,7 +5,9 @@ import * as CONSTANTS from '../Constants';
 
 
 const CharacterPractice = ():ReactElement  => {
-  const [currentChar, setCurrentChar] = useState(hiragana[0]);
+  
+  const [remainingChars, setRemainingChars] = useState(hiragana);
+  const [currentChar, setCurrentChar] = useState(getRandomChar());
   const [userInput, setUserInput] = useState('');
   const [isCorrect, setIsCorrect] = useState(true);
   const [score, setScore] = useState(0);
@@ -15,6 +17,10 @@ const CharacterPractice = ():ReactElement  => {
   const state = location.state as { type: string };
   
 
+  function getRandomChar() {
+    const index = Math.floor(Math.random() * remainingChars.length);
+    return remainingChars[index];
+  }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(event.target.value);
@@ -24,11 +30,16 @@ const CharacterPractice = ():ReactElement  => {
     event.preventDefault();
     if (userInput.toLowerCase() === currentChar.romaji) {
       setScore(score => score + 1);
-      const random = Math.floor(Math.random() * hiragana.length);
-      setCurrentChar(hiragana[random]);
+      // const random = Math.floor(Math.random() * hiragana.length);
+      setRemainingChars(remainingChars.filter(char => char !== currentChar));
+      setCurrentChar(getRandomChar());
       setUserInput("");
       setIsCorrect(true);
+      console.log(remainingChars);
+      console.log(currentChar);
     } else {
+      setRemainingChars(hiragana);
+      setCurrentChar(getRandomChar());
       setIsCorrect(false);
       setUserInput("");
       setScore(0);
