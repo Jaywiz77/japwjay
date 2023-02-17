@@ -10,7 +10,7 @@ interface practiceSelectionsType  {
 }
 
 const practiceSelections:practiceSelectionsType[] = [
-    {name:"Hiragana", page:CONSTANTS.CHARACTER_STRING, type:CONSTANTS.HIRAGANA_STRING},
+    {name:"Hiraganasss", page:CONSTANTS.CHARACTER_STRING, type:CONSTANTS.HIRAGANA_STRING},
     {name:"Katakana", page:CONSTANTS.CHARACTER_STRING, type:CONSTANTS.KATAKANA_STRING},
     {name:"Words", page:CONSTANTS.WORD_STRING , type:CONSTANTS.HIRAGANA_STRING},
     // {name:"51 - 100", page:"word", type:"hiragana" },
@@ -45,7 +45,7 @@ const Menu  = ():ReactElement => {
 
 return(
     <div className='container'>
-        <img src={Logo} style={{maxWidth:"80%"}} alt="Loegosss"/>
+        <img src={Logo} style={{maxWidth:"80%"}} alt="Logo"/>
         <div className='container' style={{width:"50%", minWidth:"300px",marginTop:"20px"}}>
         {practiceSelections.map((selection) =>
             <input key={selection.name} type="submit" className='secondary' onClick={ ()=>redirect(selection)} value={selection.name}/>

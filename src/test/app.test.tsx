@@ -18,7 +18,7 @@ describe("App test", () => {
       
         const submitValues = Array.from(submitButtons).map((button) => button.getAttribute('value'));
 
-        expect(submitValues).toEqual(["Hiragana","Katakana","Words","Chat"]);
+        expect(submitValues).toEqual(["Hiraganasss","Katakana","Words","Chat"]);
       });
 
     test('Logo Image appears', () => {
