@@ -10,7 +10,7 @@ interface practiceSelectionsType  {
 }
 
 const practiceSelections:practiceSelectionsType[] = [
-    {name:"Hiraganasss", page:CONSTANTS.CHARACTER_STRING, type:CONSTANTS.HIRAGANA_STRING},
+    {name:"Hiragana", page:CONSTANTS.CHARACTER_STRING, type:CONSTANTS.HIRAGANA_STRING},
     {name:"Katakana", page:CONSTANTS.CHARACTER_STRING, type:CONSTANTS.KATAKANA_STRING},
     {name:"Words", page:CONSTANTS.WORD_STRING , type:CONSTANTS.HIRAGANA_STRING},
     // {name:"51 - 100", page:"word", type:"hiragana" },
