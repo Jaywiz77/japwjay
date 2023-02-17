@@ -52,6 +52,7 @@ const CharacterPractice = ():ReactElement  => {
 
   return (
     <div>
+      <p><label className=''>Score: {score}</label></p>
       <h1 style={{fontSize:"8em"}}>{state.type == CONSTANTS.HIRAGANA_STRING? currentChar.hiragana : currentChar.katakana}</h1>
       <form onSubmit={handleSubmit}>
         <label>
@@ -61,7 +62,7 @@ const CharacterPractice = ():ReactElement  => {
         <input type="submit" className='primary' value={"Submit"}  />
         <input type="submit" className='secondary' value={"Return"} onClick={returnToMenu}  />
       </form>
-      <p><label>Score: {score}</label></p>
+      
       </div>
   );
 };
