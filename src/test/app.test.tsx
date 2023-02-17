@@ -18,16 +18,4 @@ describe("App test", () => {
         expect(submitValues).toEqual(["Hiragana","Katakana","Words","Chat"]);
       });
 
-
-      test('Menu buttons are correct 2', () => {
-        const { container } = render(    <BrowserRouter>
-            <Routes><Menu />    
-      </Routes></BrowserRouter>);
-        const submitButtons = container.querySelectorAll('input[type="submit"]');
-      
-        const submitValues = Array.from(submitButtons).map((button) => button.getAttribute('value'));
-
-        expect(submitValues).toEqual(["Hiragana","Katakana","Words","Chat"]);
-      });
-
 });
